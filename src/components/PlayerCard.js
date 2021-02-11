@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 
-const PlayerCard = ({name, attack, special, pokeImg}) => {
+const PlayerCard = ({appState}) => {
 
     return (
-        <Container>
+        <div>
             <p>player1 cards</p>
-            <img src={pokeImg}/>
-            <h3>{name}</h3>
-            <p>{attack}</p>
-            <p>{special}</p>
+            {appState.map((item, index) =>
+                        <Container key={index}>
+                        <img src={item[0]}/>
+                        <h3>{`Name: ${item[1]}`}</h3>
+                        <p>{`Attack: ${item[2]}`}</p>
+                        <p>{`Special: ${item[3]}`}</p>
+                        </Container>
+            )}
+
             
-        </Container>
+        </div>
     )
 
 
@@ -18,8 +23,11 @@ const PlayerCard = ({name, attack, special, pokeImg}) => {
 }
 
 const Container = styled.div`
-height: 150px;
-width: 100px;
-background-color: grey;`
+height: 300px;
+width: 200px;
+background-color: grey;
+border-style: solid;
+border-width: 3px;
+margin: 4px;`
 
 export default PlayerCard;
