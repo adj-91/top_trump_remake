@@ -9,12 +9,16 @@ const App = () => {
   const [player1Cards, setPlayer1Cards] = useState([]);
   const [player2Cards, setPlayer2Cards] = useState([]);
   const [gameState, setGameState] = useState(false);
-  const [playersTurn, setPlayersTurn] = useState(false);
+  const [selectedCard, setSelectedCard] = useState([]);
 
-  const gameHandler = () => {
-
-    setPlayersTurn(true);
-    //call function
+  const clickHandler = (index) => {
+    let card = selectedCard;
+    
+    card.push(player1Cards[index])
+    if (card.length > 1) {
+      card.shift();
+    }
+    setSelectedCard(card);
 
   }
 
@@ -58,7 +62,7 @@ const App = () => {
       <Player1/>
       <Player2/>
       <Menu gameStart={gameStartHandler}/>
-    {gameState && <PlayerCard appState={player1Cards} />}
+    {gameState && <PlayerCard appState={player1Cards} clickHandler={clickHandler} />}
     </div>
   );
 }
