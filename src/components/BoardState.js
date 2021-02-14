@@ -5,7 +5,6 @@ const BoardState = ({gameState}) => {
     return (
         <div>
             <p>{gameState}</p>
-            <p>BoardState</p>
         </div>
     )
 

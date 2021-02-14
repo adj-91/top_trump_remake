@@ -18,6 +18,13 @@ const App = () => {
   const [gameText, setGameText] = useState("welcome to pokemon Top Trumps! Press start to begin")
   const [playerAttack, setPlayerAttack] = useState();
 
+
+  const winCondition = () => {
+    let newGame = [];
+    setPlayer1Cards(newGame);
+    setPlayer2Cards(newGame);
+  }
+
   const limboHandler = (player) => {
 
     let limbo = limboCards
@@ -43,6 +50,7 @@ const App = () => {
       setPlayedCard(false);
       setp1Card([]);
       setp2Card([]);
+
       }
 
       // setPlayersTurn(false);
@@ -54,67 +62,69 @@ const App = () => {
       if(p1Strength === p2Strength) {
         setGameText("Both values are equal! Cards are sent to limbo, but will be won by whoever wins the next round!")
         limbo.push(player1card);
-        limbo.push(player2card);
+        limbo.push(player2card); //check cards are being pushed correctly
       }
      else if (p1Strength > p2Strength) {
         console.log(p1Strength, p2Strength)
         setGameText("Player 1 wins! You get their card and any cards in limbo.")
+        player1deck.push(player1card)
         player1deck.push(player2card);
-        limboHandler(player1deck);
+        limboHandler(player1deck); //check cards are being pushed correctly
           }
           else {
             console.log(p1Strength, p2Strength);
             setGameText("Player 2 wins! They get your card and any cards in limbo.");
-            player2deck.push(player1card);
-            limboHandler(player2deck); 
+            player2deck.push(player1card)
+            player2deck.push(player2card);
+            limboHandler(player2deck);
           }
-          setTimeout(roundResult, 5000);
+          //checks for win condition, if either player has no pokemon left they lose
+          if (player1deck.length === 0) {
+            setGameText("Player 2 wins the game! Player 1 ran out of pokemon.")
+            winCondition();
+          }
+          else if (player2deck.length === 0) {
+            setGameText("Player 1 wins the game! Player 2 ran out of pokemon.")
+            winCondition();
+          }
+          setTimeout(roundResult, 4000);
 
       }
     
-
-  const attackHandler = (val) => {
-    if(!playersTurn) {
-      console.log("not players turn!");
-    }
-    else {
-      setPlayerAttack(val);
-      gameLoop();
-      
-    }
-  }
 
   const clickHandler = (index) => {
     let card = p1Card;
     let opponentCard = p2Card;
     let p1deck = player1Cards;
     let p2deck = player2Cards;
-    let random = Math.floor(Math.random()*player2Cards.length);
+    let random = Math.floor(Math.random()*p2deck.length);
 
     
     
-    card.push(player1Cards[index])
+    card.push(p1deck[index])
     if (card.length > 1) {
       card.shift();
     }
     p1deck.splice(index, 1);
 
-    opponentCard.push(player2Cards[random])
+    opponentCard.push(p2deck[random])
     if (opponentCard.length > 1) {
       opponentCard.shift();
     }
-    p2deck.splice(index, 1);
+    p2deck.splice(random, 1);
 
     setp1Card(card);
     setp2Card(opponentCard);
     setPlayedCard(true);
+    setPlayer1Cards(p1deck);
+    setPlayer2Cards(p2deck);
     setGameText("Choose attack or special, choose a higher value than your opponent to win the round!");
   }
 
   const gameStartHandler = async () => {
 
 
-    for (let i=0; i<32; i++) {
+    for (let i=0; i<6; i++) {
     let randomNum = Math.floor(Math.random()*151) +1
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomNum}`);
       const data = await res.json();
@@ -128,7 +138,7 @@ const App = () => {
         
       ]
 
-      if (i <16) {
+      if (i <3) {
       const cardArray = player1Cards;
        cardArray.push(pokeCard);
       setPlayer1Cards(cardArray); 
