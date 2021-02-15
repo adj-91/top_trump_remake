@@ -4,8 +4,8 @@ const Menu = ({gameStart}) => {
 
     return (
         <Container>
-            <h1>Menu</h1>
-            <button onClick={gameStart}>press start</button>
+            <h2>Menu</h2>
+        <h2 onClick={gameStart}>Start</h2>
         </Container>
     )
 
@@ -14,6 +14,10 @@ const Menu = ({gameStart}) => {
 }
 
 const Container = styled.div`
-background-color: red;`
+background-color: red;
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+`
 
 export default Menu;

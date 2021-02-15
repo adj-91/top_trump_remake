@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 
-const Player1 = ({p1chosenCard, playersTurn, attackHandle}) => {
+const Player1 = ({p1chosenCard, attackHandle}) => {
 
     console.log(p1chosenCard);
 
     return (
         <Container>
-            <h1>Player's Card</h1>
-            <p>{ playersTurn ? "Your turn" : "Opponent's turn"}</p>
-            <img src={p1chosenCard[0][0]}/>
-            <h1>{p1chosenCard[0][1]}</h1>
-            <p onClick={()=>attackHandle(2)}>{`Attack: ${p1chosenCard[0][2]}`}</p>
-            <p onClick={()=>attackHandle(3)}>{`Special: ${p1chosenCard[0][3]}`}</p>
+            {/* <h3>Player's Card</h3> */}
+            <PokeImg src={p1chosenCard[0][0]}/>
+            <h3>{p1chosenCard[0][1]}</h3>
+            <p onClick={()=>attackHandle(2)}>{`Atk: ${p1chosenCard[0][2]}`}</p>
+            <p onClick={()=>attackHandle(3)}>{`Spec: ${p1chosenCard[0][3]}`}</p>
         </Container>
     )
 
@@ -20,6 +19,22 @@ const Player1 = ({p1chosenCard, playersTurn, attackHandle}) => {
 }
 
 const Container = styled.div`
-background-color: cyan;`
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+
+background-color: cyan;
+height: 200px;
+width: 125px;
+background-color: grey;
+border-style: solid;
+border-width: 3px;
+font-size: 9px;`
+
+const PokeImg = styled.img`
+height: 90px;
+width: 90px;
+`
 
 export default Player1;

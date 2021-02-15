@@ -6,11 +6,11 @@ const Player2 = ({p2chosenCard}) => {
 
     return (
         <Container>
-            <h1>Opponent's Card</h1>
-            <img src={p2chosenCard[0][0]}/>
-            <h1>{p2chosenCard[0][1]}</h1>
-            <p>{`Attack: ${p2chosenCard[0][2]}`}</p>
-            <p>{`Special: ${p2chosenCard[0][3]}`}</p>
+            {/* <h3>Opponent's Card</h3> */}
+            <PokeImg src={p2chosenCard[0][0]}/>
+            <h3>{p2chosenCard[0][1]}</h3>
+            <p>{`Atk: ${p2chosenCard[0][2]}`}</p>
+            <p>{`Spec: ${p2chosenCard[0][3]}`}</p>
         </Container>
     )
 
@@ -19,6 +19,22 @@ const Player2 = ({p2chosenCard}) => {
 }
 
 const Container = styled.div`
-background-color: green;`
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+
+background-color: green;
+height: 200px;
+width: 125px;
+background-color: grey;
+border-style: solid;
+border-width: 3px;
+font-size: 9px;`
+
+const PokeImg = styled.img`
+height: 90px;
+width: 90px;
+`
 
 export default Player2;

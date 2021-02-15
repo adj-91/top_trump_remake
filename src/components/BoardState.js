@@ -3,13 +3,15 @@ import styled from 'styled-components';
 const BoardState = ({gameState}) => {
 
     return (
-        <div>
+        <Container>
             <p>{gameState}</p>
-        </div>
+        </Container>
     )
-
-
     
 }
+
+const Container = styled.div`
+align-self: center;
+`
 
 export default BoardState;
