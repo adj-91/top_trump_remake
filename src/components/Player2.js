@@ -24,7 +24,6 @@ flex-direction: row;
 flex-wrap: wrap;
 justify-content: center;
 
-background-color: green;
 height: 200px;
 width: 125px;
 background-color: grey;

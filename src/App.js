@@ -3,6 +3,7 @@ import Player1 from './components/Player1';
 import Player2 from './components/Player2';
 import Menu from './components/Menu';
 import PlayerCard from './components/PlayerCard';
+import OpponentCard from './components/OpponentCard';
 import BoardState from './components/BoardState';
 import styled from 'styled-components';
 import './App.css';
@@ -20,7 +21,6 @@ const App = () => {
   const [gameState, setGameState] = useState(false);
   const [playedCard, setPlayedCard] = useState(false);
   const [gameText, setGameText] = useState("welcome to pokemon Top Trumps! Press start to begin");
-
 
   const winCondition = () => { //when a player wins, this resets the game.
     let newGame = [];
@@ -89,7 +89,7 @@ const App = () => {
             setGameText("Player 1 wins the game! Player 2 ran out of pokemon.")
             winCondition();
           }
-          setTimeout(roundResult, 2500);
+          setTimeout(roundResult, 1500);
 
       }
     
@@ -124,9 +124,12 @@ const App = () => {
   }
 
   const gameStartHandler = async () => { //sets game on when button pressed
+ 
+    let p1CardArray = [];
+    let p2CardArray = [];
 
+     for (let i=0; i<6; i++) {
 
-    for (let i=0; i<6; i++) {
     let randomNum = Math.floor(Math.random()*151) +1
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomNum}`);
       const data = await res.json();
@@ -141,14 +144,12 @@ const App = () => {
       ]
 
       if (i <3) {
-      const cardArray = player1Cards;
-       cardArray.push(pokeCard);
-      setPlayer1Cards(cardArray); 
+       p1CardArray.push(pokeCard);
+      setPlayer1Cards(p1CardArray); 
       }
       else {
-        const cardArray = player2Cards;
-        cardArray.push(pokeCard);
-        setPlayer2Cards(cardArray);
+        p2CardArray.push(pokeCard);
+        setPlayer2Cards(p2CardArray);
       }
 
     }
@@ -162,10 +163,13 @@ const App = () => {
       <h1>Pokemon Top Trump</h1>
       <Menu gameStart={gameStartHandler}/>
       <Cards>
+      {gameState && <p>Player 2 cards</p>}
+      {gameState && <OpponentCard appState={player2Cards} />}
       {playedCard && <Player2 p2chosenCard={p2Card}/>}
       <BoardState gameState={gameText}/>
       {playedCard && <Player1 p1chosenCard={p1Card} attackHandle={gameLoop}/>}
       </Cards>
+      {gameState && <p>Player 1 cards</p>}
       {gameState && <PlayerCard appState={player1Cards} clickHandler={clickHandler} />}
     </Container>
   );

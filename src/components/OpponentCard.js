@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 
-const PlayerCard = ({appState, clickHandler}) => {
+const opponentCard = ({appState}) => {
 
     return (
         <Card>
             {appState.map((item, index) =>
-                        <Container key={index} onClick={()=>clickHandler(index)}>
-                        <img src={item[0]}/>
-                        <h3>{item[1]}</h3>
-
+                        <Container key={index}>
+                        <p>Card {index+1}</p>
                         </Container>
             )}
-
-            
         </Card>
     )
 
@@ -23,7 +19,7 @@ const PlayerCard = ({appState, clickHandler}) => {
 const Card = styled.div`
 display: flex;
 flex-wrap: wrap;
-background-color: blue;
+background-color: red;
 margin-top: 8px;
 margin-bottom: 8px;
 border-style: solid;
@@ -33,9 +29,9 @@ border-color: black;
 
 const Container = styled.div`
 display: flex;
-flex-direction: column;
+flex-direction: row;
+flex-wrap: wrap;
 justify-content: center;
-text-align: center;
 
 height: 125px;
 width: 125px;
@@ -46,10 +42,10 @@ margin: 4px;
 font-size: 9px;
 
 @media (max-width: 500px) {
-    height: 120px;
-    width: 120px;
+    height: 20px;
+    width: 65px;
 }
 `
 
 
-export default PlayerCard;
+export default opponentCard;

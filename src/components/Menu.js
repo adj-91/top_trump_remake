@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-const Menu = ({gameStart}) => {
+const Menu = ({gameStart, helpText}) => {
 
     return (
         <Container>
-            <h2>Menu</h2>
         <h2 onClick={gameStart}>Start</h2>
         </Container>
     )
