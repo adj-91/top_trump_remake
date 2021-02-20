@@ -13,7 +13,3 @@ both cards chosen by the players will be put into "limbo", where they will remai
 a player wins a round.
 
 To win a player simply has to get all of their opponent's cards.
-
-
-One feature I wanted to add that at the time I couldn't get working was for the AI to get
-its own turns where it would choose a stat against the player.

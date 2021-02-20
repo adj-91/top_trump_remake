@@ -67,14 +67,14 @@ const App = () => {
         limbo.push(player2card); 
       }
      else if (p1Strength > p2Strength) {
-        console.log(p1Strength, p2Strength)
+        
         setGameText("Player 1 wins! You get their card and any cards in limbo.")
         player1deck.push(player1card)
         player1deck.push(player2card);
         limboHandler(player1deck); 
           }
           else {
-            console.log(p1Strength, p2Strength);
+            
             setGameText("Player 2 wins! They get your card and any cards in limbo.");
             player2deck.push(player1card)
             player2deck.push(player2card);
@@ -95,6 +95,12 @@ const App = () => {
     
 
   const clickHandler = (index) => { //sets chosen card for player and a random card for opponent
+    
+    if (playedCard) {
+      return;
+    } 
+    
+    else {
     let card = p1Card;
     let opponentCard = p2Card;
     let p1deck = player1Cards;
@@ -122,6 +128,7 @@ const App = () => {
     setPlayer2Cards(p2deck);
     setGameText("Choose attack or special, choose a higher value than your opponent to win the round!");
   }
+}
 
   const gameStartHandler = async () => { //sets game on when button pressed
  
@@ -178,6 +185,11 @@ const App = () => {
 const Container = styled.div`
 font-family: pokemon;
 font-size: 14px;
+background-color: wheat;
+padding: 5vh;
+border-width: 5px;
+border-style: solid;
+margin-top: 5vh;
 `
 const Cards = styled.div`
 display: flex;

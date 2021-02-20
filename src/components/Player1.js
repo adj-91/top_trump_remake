@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 const Player1 = ({p1chosenCard, attackHandle}) => {
 
-    console.log(p1chosenCard);
-
     return (
         <Container>
             {/* <h3>Player's Card</h3> */}
@@ -20,9 +18,9 @@ const Player1 = ({p1chosenCard, attackHandle}) => {
 
 const Container = styled.div`
 display: flex;
-flex-direction: row;
-flex-wrap: wrap;
+flex-direction: column;
 justify-content: center;
+align-items: center;
 
 height: 200px;
 width: 125px;

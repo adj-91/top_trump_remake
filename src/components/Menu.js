@@ -13,10 +13,13 @@ const Menu = ({gameStart, helpText}) => {
 }
 
 const Container = styled.div`
-background-color: red;
+background-color: #f2e4e4;
 display: flex;
 flex-direction: row;
 justify-content: space-evenly;
+
+border-style: double;
+border-width: 5px;
 `
 
 export default Menu;

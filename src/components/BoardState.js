@@ -13,9 +13,12 @@ const BoardState = ({gameState}) => {
 const Container = styled.div`
 align-self: center;
 border-color: black;
-border-style: solid;
-width: 70%;
+border-style: double;
+border-width: 5px;
+width: 90%;
 margin: 2vh;
+
+background-color: #f2e4e4;
 `
 
 export default BoardState;
